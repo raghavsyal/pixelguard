@@ -118,7 +118,7 @@ export default function MyArtworks() {
         </Box>
         <Button
           variant="contained" startIcon={<BrushRoundedIcon />}
-          onClick={() => window.location.href = `${STREAMLIT_URL}?page=upload&email=${user?.email}&name=${user?.name}`}
+          onClick={() => navigate("/upload")}
         >
           Register new artwork
         </Button>
