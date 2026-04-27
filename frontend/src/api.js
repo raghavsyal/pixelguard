@@ -1,9 +1,6 @@
-// src/api.js
-// All calls to the FastAPI backend go through this file.
 
 const BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
 
-// ── REGISTER ARTWORK ──────────────────────────────────────────────────────────
 export async function registerArtwork({ file, artworkTitle, artworkDesc, ownerEmail, artistName }) {
   const form = new FormData();
   form.append("file",          file);
@@ -19,12 +16,10 @@ export async function registerArtwork({ file, artworkTitle, artworkDesc, ownerEm
   // Returns: { asset_id, sha256, phash, timestamp, verify_url }
 }
 
-// ── DOWNLOAD CERTIFICATE PDF ──────────────────────────────────────────────────
 export function getCertificateUrl(assetId) {
   return `${BASE_URL}/api/certificate/${assetId}`;
 }
 
-// ── SCAN ARTWORK ──────────────────────────────────────────────────────────────
 export async function scanArtwork({ file, assetId, scanDesc, threshold }) {
   const form = new FormData();
   form.append("file",      file);
@@ -39,7 +34,7 @@ export async function scanArtwork({ file, assetId, scanDesc, threshold }) {
   // Returns: { matches, total, high_risk, medium, low }
 }
 
-// ── GEMINI ANALYSE ONE MATCH ──────────────────────────────────────────────────
+//  GEMINI ANALYSE ONE MATCH 
 export async function analyseMatch({ artworkDesc, matchUrl, matchTitle, similarity }) {
   const form = new FormData();
   form.append("artwork_desc", artworkDesc);
@@ -54,7 +49,7 @@ export async function analyseMatch({ artworkDesc, matchUrl, matchTitle, similari
   // Returns: { summary }
 }
 
-// ── GENERATE DMCA PDF ─────────────────────────────────────────────────────────
+//  GENERATE DMCA PDF 
 export async function generateDmca({ artistName, artworkTitle, assetId, certTs, violations }) {
   const form = new FormData();
   form.append("artist_name",   artistName);
@@ -68,12 +63,11 @@ export async function generateDmca({ artistName, artworkTitle, assetId, certTs, 
     const data = await res.json();
     throw data;
   }
-  // Return as blob for download
   const blob = await res.blob();
   return blob;
 }
 
-// ── GET USER ARTWORKS ─────────────────────────────────────────────────────────
+//  GET USER ARTWORKS 
 export async function getUserArtworks(email) {
   const res  = await fetch(`${BASE_URL}/api/artworks/${encodeURIComponent(email)}`);
   const data = await res.json();
@@ -81,7 +75,6 @@ export async function getUserArtworks(email) {
   return data.artworks;
 }
 
-// ── VERIFY ARTWORK (public) ───────────────────────────────────────────────────
 export async function verifyArtwork(assetId) {
   const res  = await fetch(`${BASE_URL}/api/verify/${assetId}`);
   const data = await res.json();
