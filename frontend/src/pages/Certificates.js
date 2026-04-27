@@ -92,7 +92,7 @@ function CertCard({ art }) {
         <Button
           fullWidth variant="contained" size="large"
           startIcon={<DownloadRoundedIcon />}
-          href={`${STREAMLIT_URL}?page=certificate&asset_id=${art.asset_id}&email=${art.owner_email}`}
+          href={`${process.env.REACT_APP_API_URL}/api/certificate/${art.asset_id}`}
           sx={{ borderRadius: 3 }}
         >
           Download PDF Certificate
