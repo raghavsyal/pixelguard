@@ -1,0 +1,18 @@
+# secrets — never commit these
+.env
+serviceAccountKey.json
+*.json
+
+# python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.Python
+
+# streamlit
+.streamlit/
+
+# OS
+.DS_Store
+Thumbs.db
