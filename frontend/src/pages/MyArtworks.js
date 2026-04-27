@@ -147,7 +147,7 @@ export default function MyArtworks() {
           </Typography>
           {!search && (
             <Button variant="contained" sx={{ mt: 1 }}
-              onClick={() => window.location.href = `${STREAMLIT_URL}?page=upload&email=${user?.email}&name=${user?.name}`}>
+              onClick={() => navigate("/upload")}>
               Register your first artwork
             </Button>
           )}
