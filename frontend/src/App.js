@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import theme from "./theme/theme";
 import { AuthProvider, useAuth } from "./context/AuthContext";
-
+import { Analytics } from "@vercel/analytics/react"
 import Login        from "./pages/Login";
 import Dashboard    from "./pages/Dashboard";
 import MyArtworks   from "./pages/MyArtworks";
